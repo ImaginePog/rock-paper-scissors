@@ -1,6 +1,6 @@
-let userChoice = prompt("Enter your choice: (rock,paper,scissor): ");
-userChoice = userChoice.toLowerCase();
+function GetUserChoice() {
+    let userChoice = prompt("Enter your choice: (rock,paper,scissor): ");
+    userChoice = userChoice.toLowerCase();
 
-console.log(userChoice);
-
-
+    return userChoice;
+}
