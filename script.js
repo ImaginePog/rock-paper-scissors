@@ -7,7 +7,7 @@ function GetUserChoice() {
     return userChoice;
 }
 
-const options = ["rock","paper","scissors"];
+const options = ["rock", "paper", "scissors"];
 
 function GetComputerChoice() {
     let computerChoice;
@@ -17,4 +17,30 @@ function GetComputerChoice() {
     console.log(computerChoice);
 
     return computerChoice;
+}
+
+function playRound(userChoice,computerChoice) {
+    if(userChoice == computerChoice)
+        return "Draw";
+
+    switch(userChoice) {
+        case "rock":
+            if(computerChoice == "paper")
+                return "Loss";
+            if(computerChoice == "scissors")
+                return "Win";
+            break;
+        case "paper":
+            if(computerChoice == "scissors")
+                return "Loss";
+            if(computerChoice == "rock")
+                return "Win";
+            break;
+        case "scissors":
+            if(computerChoice == "rock")
+                return "Loss";
+            if(computerChoice == "paper")
+                return "Win";
+            break;
+    }
 }
