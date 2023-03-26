@@ -44,3 +44,38 @@ function playRound(userChoice,computerChoice) {
             break;
     }
 }
+    
+function game() {
+    let computerScore = 0;
+    let playerScore = 0;
+
+    let firstTo = 5;
+
+    let quit = false;
+    while(!quit)
+    {
+        let result = playRound(GetUserChoice(), GetComputerChoice());
+
+        switch(result) {
+            case "Win":
+                ++playerScore;
+                break;
+            case "Loss":
+                ++computerScore;
+                break;
+        }
+
+        if(playerScore === firstTo || computerScore === firstTo)
+            quit = true;
+
+        console.log("The score: ");
+        console.log("Player:", playerScore, "Computer:", computerScore);
+    }
+
+    if(playerScore > computerScore)
+        console.log("You win!");
+    else 
+        console.log("You lose!");
+}
+
+game();
