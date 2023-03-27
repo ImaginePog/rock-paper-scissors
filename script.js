@@ -1,4 +1,17 @@
+/************* CONSTANTS ***************/
 const options = ["rock", "paper", "scissors"];
+const selectBtns = document.querySelectorAll(".select-btn");
+const navBtn = document.querySelector(".nav-btn");
+const infoDisplay = document.querySelector(".info-display");
+const playerMove = document.querySelector(".player-display");
+const logContainer = document.querySelector(".log-container");
+const scoreDisplay = document.querySelector(".score-display");
+
+console.log(infoDisplay);
+
+/************* LOGIC ***************/
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerSelection() {
 	let computerSelection;
@@ -29,19 +42,39 @@ function playRound(playerSelection, computerSelection) {
 	}
 }
 
-function startRound() {
-	console.log("started");
+function calculateScore(result) {
+	if (result !== "Draw") {
+		switch (result) {
+			case "Win":
+				++playerScore;
+				break;
+			case "Loss":
+				++computerScore;
+				break;
+		}
+	}
+	console.log("Player score:", playerScore, "Computer score:", computerScore);
 }
 
-const buttons = document.querySelectorAll(".select-btn");
-const confirmBtn = document.querySelector(".confirm-btn");
+/************* UI ***************/
+let playerSelection;
 let canConfirm = false;
-
-console.log(buttons);
 
 function resetSelection() {
 	const selectedBtn = document.querySelector(".select-btn.selected");
 	if (selectedBtn !== null) selectedBtn.classList.toggle("selected");
+}
+
+function resetUI(e) {
+	playerMove.textContent = "Choose and press the confirm button.";
+	infoDisplay.textContent = "The computer is waiting...";
+	selectBtns.forEach((button) => {
+		button.addEventListener("click", selectMove);
+	});
+
+	navBtn.addEventListener("click", confirmMove);
+	navBtn.removeEventListener("click", resetUI);
+	navBtn.textContent = "Confirm";
 }
 
 function selectMove(e) {
@@ -61,13 +94,84 @@ function confirmMove() {
 	if (!canConfirm) {
 		alert("Please select a move");
 		return;
+	}
+
+	canConfirm = false;
+
+	playerSelection = document.querySelector(".selected").getAttribute("id");
+	resetSelection();
+
+	displayPlayerMove(playerSelection);
+	startRound();
+}
+
+/************* DISPLAY ***************/
+
+function displayPlayerMove(playerSelection) {
+	playerMove.textContent = `You chose ${playerSelection}`;
+}
+
+function displayComputerMove(computerSelection) {
+	infoDisplay.textContent =
+		`The computer chose ${computerSelection}.` +
+		" Press the next button for next round.";
+}
+
+function logResult(result) {
+	const resultDisplay = document.createElement("p");
+	resultDisplay.textContent = result;
+	logContainer.appendChild(resultDisplay);
+}
+
+function displayNextRound() {
+	navBtn.textContent = "Next Round";
+	navBtn.addEventListener("click", resetUI);
+}
+
+function displayScore() {
+	scoreDisplay.textContent = `Score: ${playerScore} - ${computerScore}`;
+}
+
+/************* GAME ***************/
+
+function endPlayerTurn() {
+	selectBtns.forEach((button) => {
+		button.removeEventListener("click", selectMove);
+	});
+
+	navBtn.removeEventListener("click", confirmMove);
+}
+
+function startRound() {
+	console.log("started");
+	endPlayerTurn();
+	const computerSelection = getComputerSelection();
+	displayComputerMove(computerSelection);
+
+	const result = playRound(playerSelection, computerSelection);
+
+	calculateScore(result);
+	displayScore();
+	logResult(result);
+
+	if (playerScore >= 5 || computerScore >= 5) {
+		let displayText;
+		if (playerScore > computerScore) {
+			displayText = "Congratulations you win!!";
+		} else {
+			displayText = "You lose :(";
+		}
+		infoDisplay.textContent =
+			displayText + " Press f5 to restart or reload";
 	} else {
-		startRound();
+		displayNextRound();
 	}
 }
 
-buttons.forEach((button) => {
+/************* START ***************/
+
+selectBtns.forEach((button) => {
 	button.addEventListener("click", selectMove);
 });
 
-confirmBtn.addEventListener("click", confirmMove);
+navBtn.addEventListener("click", confirmMove);
