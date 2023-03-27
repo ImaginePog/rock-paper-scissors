@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 50vh;
+    padding: 24px 500px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(48, 46, 46);
+    justify-content: center;
+    gap: 24px;
+}
+
+.player-selection, .computer-display, .result-container {
+    border: black solid 3px;
+}
+
+.player-selection {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 24px;
+    align-items: center;
+    gap: 24px;
+}
+
+.options {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.select-btn {
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: black;
+    padding: 50px 50px;
+}
+
+.result-container {
+    flex: 1;
+}
+
+.selected {
+    transition: 0.2s;
+    transform: scale(1.1);
+    background-color: green;
+    box-shadow: 0px 0px 5px grey;
+}
