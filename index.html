@@ -12,19 +12,25 @@
 	</head>
 
 	<body>
-		<div class="player-selection">
-			<div class="options">
-				<button id="rock" class="select-btn">Rock</button>
-				<button id="paper" class="select-btn">Paper</button>
-				<button id="scissors" class="select-btn">Scissors</button>
+		<div class="game-container">
+			<div class="play-area">
+				<button class="nav-btn">Confirm</button>
+				<div class="player-selection">
+					<div class="options">
+						<button id="rock" class="select-btn">Rock</button>
+						<button id="paper" class="select-btn">Paper</button>
+						<button id="scissors" class="select-btn">
+							Scissors
+						</button>
+					</div>
+					<p class="player-display">Choose...</p>
+				</div>
+				<p class="info-display">The computer is waiting...</p>
 			</div>
-			<button class="confirm-btn">Confirm</button>
-		</div>
-		<div class="computer-display">
-			<p>The computer is waiting...</p>
-		</div>
-		<div class="result-container">
-			<p>Result:</p>
+			<div class="log-container">
+				<p class="score-display">Score:</p>
+				<p class>Result Log:</p>
+			</div>
 		</div>
 		<script src="script.js"></script>
 	</body>
