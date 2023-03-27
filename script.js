@@ -7,8 +7,6 @@ const playerMove = document.querySelector(".player-display");
 const logContainer = document.querySelector(".log-container");
 const scoreDisplay = document.querySelector(".score-display");
 
-console.log(infoDisplay);
-
 /************* LOGIC ***************/
 let playerScore = 0;
 let computerScore = 0;
@@ -17,8 +15,6 @@ function getComputerSelection() {
 	let computerSelection;
 	let randNum = Math.floor(Math.random() * 3);
 	computerSelection = options[randNum];
-
-	console.log(computerSelection);
 
 	return computerSelection;
 }
@@ -53,7 +49,6 @@ function calculateScore(result) {
 				break;
 		}
 	}
-	console.log("Player score:", playerScore, "Computer score:", computerScore);
 }
 
 /************* UI ***************/
@@ -143,7 +138,6 @@ function endPlayerTurn() {
 }
 
 function startRound() {
-	console.log("started");
 	endPlayerTurn();
 	const computerSelection = getComputerSelection();
 	displayComputerMove(computerSelection);
