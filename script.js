@@ -1,12 +1,3 @@
-function GetUserChoice() {
-    let userChoice = prompt("Enter your choice: (rock,paper,scissors): ");
-    userChoice = userChoice.toLowerCase();
-    
-    console.log(userChoice);
-    
-    return userChoice;
-}
-
 const options = ["rock", "paper", "scissors"];
 
 function GetComputerChoice() {
@@ -44,38 +35,29 @@ function playRound(userChoice,computerChoice) {
             break;
     }
 }
-    
-function game() {
-    let computerScore = 0;
-    let playerScore = 0;
 
-    let firstTo = 5;
+const buttons = document.querySelectorAll('.select');
 
-    let quit = false;
-    while(!quit)
-    {
-        let result = playRound(GetUserChoice(), GetComputerChoice());
+console.log(buttons);
 
-        switch(result) {
-            case "Win":
-                ++playerScore;
-                break;
-            case "Loss":
-                ++computerScore;
-                break;
-        }
-
-        if(playerScore === firstTo || computerScore === firstTo)
-            quit = true;
-
-        console.log("The score: ");
-        console.log("Player:", playerScore, "Computer:", computerScore);
-    }
-
-    if(playerScore > computerScore)
-        console.log("You win!");
-    else 
-        console.log("You lose!");
+function resetSelection() {
+    buttons.forEach((button) => {
+        if (button.classList.contains('selected'))
+            button.classList.toggle('selected');
+    });
 }
 
-game();
+function selectMove(e) {
+    const btn = e.target;
+
+    if (btn.classList.contains('selected')) {
+        return;
+    }
+
+    resetSelection();
+    btn.classList.add('selected');
+}
+
+buttons.forEach((button) => {
+    button.addEventListener('click', selectMove);
+});
