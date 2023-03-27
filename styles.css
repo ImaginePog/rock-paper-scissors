@@ -1,34 +1,47 @@
+/************* DOCUMENT ***************/
 * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
 
-body {
-    min-height: 60vh;
-    padding: 24px 500px;
-    margin: 0;
+/************* LAYOUT ***************/
+.game-container {
     display: flex;
-    flex-direction: column;
-    background-color: rgb(48, 46, 46);
     justify-content: center;
     gap: 24px;
+    padding: 24px;
+}
+
+body {
+    height: 100vw;
+    margin: 0;
+    background-color: rgb(179, 171, 171);
 }
 
 /************* COMMON ***************/
 
-.player-selection, .computer-display, .result-container {
-    border: black solid 3px;
+.play-area, .log-container {
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
-/************* PLAYER SELECTION ***************/
+/************* SELECTION ***************/
 
-.player-selection {
-    flex: 2;
+.play-area {
+    align-self: flex-start;
     display: flex;
     flex-direction: column;
-    padding: 24px 24px;
-    align-items: center;
-    gap: 24px;
+    justify-content: center;
+    min-width: 1024px;
+    gap: 32px;
+    padding: 48px 24px;
+}
+
+.player-selection {
+   
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
 }
 
 .options {
@@ -37,7 +50,6 @@ body {
     flex: 1;
     gap: 24px;
     justify-content: center;
-    align-items: center;
 }
 
 .select-btn {
@@ -46,24 +58,46 @@ body {
     color: white;
     background-color: black;
     padding: 50px 50px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
-.confirm-btn {
+.nav-btn {
     border: none;
-    padding: 5px 20px;
+    padding: 20px 20px;
     border-radius: 5px;
+    font-size: 32px;
+    align-self: flex-start;
 }
 
-/************* COMPUTER SELECTION DISPLAY ***************/
+.nav-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 5px white;
+}
 
-.computer-display {
-    flex: 3 ;
+.player-display {
+    font-size: 32px;
+    padding: 0;
+    margin: 0;
+}
+
+/************* INFO DISPLAY ***************/
+
+.info-display {
+    font-size: 32px;
+    margin: 0;
+    padding: 0;
+}
+
+/************* LOG ***************/
+
+.log-container {
+    font-size: 24px;
     text-align: center;
+    min-width: 200px;
 }
 
-.result-container {
-    flex: 1;
-}
+/************* DYNAMIC ***************/
 
 .selected {
     transition: 0.2s;
