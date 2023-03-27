@@ -1,4 +1,4 @@
-# console-rock-paper-scissors
+# rock-paper-scissors
 Third assignment project of TOP
 
 TOP's assingment for learning Javascript.
