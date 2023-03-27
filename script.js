@@ -29,10 +29,13 @@ function playRound(playerSelection, computerSelection) {
 	}
 }
 
-function startRound() {}
+function startRound() {
+	console.log("started");
+}
 
 const buttons = document.querySelectorAll(".select-btn");
 const confirmBtn = document.querySelector(".confirm-btn");
+let canConfirm = false;
 
 console.log(buttons);
 
@@ -46,17 +49,20 @@ function selectMove(e) {
 
 	if (btn.classList.contains("selected")) {
 		resetSelection();
+		canConfirm = false;
 	} else {
 		resetSelection();
 		btn.classList.add("selected");
+		canConfirm = true;
 	}
 }
 
 function confirmMove() {
-	const selectedBtn = document.querySelector(".select-btn.selected");
-	if (selectedBtn === null) alert("Please select a move");
-	else {
-		console.log(selectedBtn.getAttribute("id"));
+	if (!canConfirm) {
+		alert("Please select a move");
+		return;
+	} else {
+		startRound();
 	}
 }
 
