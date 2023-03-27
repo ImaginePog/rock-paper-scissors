@@ -1,63 +1,66 @@
 const options = ["rock", "paper", "scissors"];
 
-function GetComputerChoice() {
-    let computerChoice;
+function getComputerSelection() {
+    let computerSelection;
     let randNum = Math.floor(Math.random() * 3);
-    computerChoice = options[randNum];
+    computerSelection = options[randNum];
     
-    console.log(computerChoice);
+    console.log(computerSelection);
 
-    return computerChoice;
+    return computerSelection;
 }
 
-function playRound(userChoice,computerChoice) {
-    if(userChoice == computerChoice)
+function playRound(playerSelection,computerSelection) {
+    if(playerSelection == computerSelection)
         return "Draw";
 
-    switch(userChoice) {
+    switch(playerSelection) {
         case "rock":
-            if(computerChoice == "paper")
+            if(computerSelection == "paper")
                 return "Loss";
-            if(computerChoice == "scissors")
+            if(computerSelection == "scissors")
                 return "Win";
             break;
         case "paper":
-            if(computerChoice == "scissors")
+            if(computerSelection == "scissors")
                 return "Loss";
-            if(computerChoice == "rock")
+            if(computerSelection == "rock")
                 return "Win";
             break;
         case "scissors":
-            if(computerChoice == "rock")
+            if(computerSelection == "rock")
                 return "Loss";
-            if(computerChoice == "paper")
+            if(computerSelection == "paper")
                 return "Win";
             break;
     }
 }
 
-const buttons = document.querySelectorAll('.select');
+const buttons = document.querySelectorAll('.select-btn');
 
 console.log(buttons);
 
 function resetSelection() {
-    buttons.forEach((button) => {
-        if (button.classList.contains('selected'))
-            button.classList.toggle('selected');
-    });
+    const selectedBtn = document.querySelector('.select-btn.selected');
+    if (selectedBtn !== null)
+        selectedBtn.classList.toggle('selected');
 }
 
 function selectMove(e) {
     const btn = e.target;
 
     if (btn.classList.contains('selected')) {
-        return;
+        resetSelection();
+    }
+    else {
+        resetSelection();
+        btn.classList.add('selected');
     }
 
-    resetSelection();
-    btn.classList.add('selected');
 }
+
 
 buttons.forEach((button) => {
     button.addEventListener('click', selectMove);
 });
+
