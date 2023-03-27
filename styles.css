@@ -43,6 +43,12 @@ body {
     padding: 50px 50px;
 }
 
+.confirm-btn {
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
 .result-container {
     flex: 1;
 }

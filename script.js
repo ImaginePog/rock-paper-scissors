@@ -37,6 +37,7 @@ function playRound(playerSelection,computerSelection) {
 }
 
 const buttons = document.querySelectorAll('.select-btn');
+const confirmBtn = document.querySelector('.confirm-btn');
 
 console.log(buttons);
 
@@ -58,9 +59,20 @@ function selectMove(e) {
     }
 
 }
+   
+function confirmMove() {
+    const selectedBtn = document.querySelector('.select-btn.selected');
+    if (selectedBtn === null)
+        alert("Please select a move");
+    else {
+        console.log(selectedBtn.getAttribute("id"));
+    }
+ 
+}
 
 
 buttons.forEach((button) => {
     button.addEventListener('click', selectMove);
 });
 
+confirmBtn.addEventListener('click', confirmMove);
