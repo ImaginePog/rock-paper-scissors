@@ -1,9 +1,10 @@
 * {
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    min-height: 50vh;
+    min-height: 60vh;
     padding: 24px 500px;
     margin: 0;
     display: flex;
@@ -13,9 +14,13 @@ body {
     gap: 24px;
 }
 
+/************* COMMON ***************/
+
 .player-selection, .computer-display, .result-container {
     border: black solid 3px;
 }
+
+/************* PLAYER SELECTION ***************/
 
 .player-selection {
     flex: 2;
@@ -47,6 +52,13 @@ body {
     border: none;
     padding: 5px 20px;
     border-radius: 5px;
+}
+
+/************* COMPUTER SELECTION DISPLAY ***************/
+
+.computer-display {
+    flex: 3 ;
+    text-align: center;
 }
 
 .result-container {
